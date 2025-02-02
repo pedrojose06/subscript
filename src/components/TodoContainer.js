@@ -53,12 +53,14 @@ const TodoContainer = () => {
 
   return (
     <div className="container">
-      <Header />
-      <InputTodo addTodoProps={addTodoItem} />
+      <section className="section-form">
+        <Header />
+        <InputTodo addTodoProps={addTodoItem} />
+      </section>
       <div className="boards">
         {state.todos.length > 0 ? (
           boards.map((board) => (
-            <div key={board}>
+            <div key={board} className="board">
               <h3>{board}</h3>
               <TodosList
                 todos={state.todos.filter((todo) => todo.board === board)}
@@ -68,10 +70,10 @@ const TodoContainer = () => {
             </div>
           ))
         ) : (
-          <>
+          <div>
             <h4>All boards are empty</h4>
             <p>Add a new todo to get started</p>
-          </>
+          </div>
         )}
       </div>
     </div>
