@@ -1,35 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TodosList from './TodosList'
 import Header from './Header'
 import InputTodo from './InputTodo'
 // import uuid from "uuid";
 import { v4 as uuidv4 } from 'uuid'
 
-const inicialState = {
-  todos: [
-    {
-      // id: uuid.v4(),
-      id: uuidv4(),
-      title: 'Setup development environment',
-      completed: true,
-    },
-    {
-      // id: uuid.v4(),
-      id: uuidv4(),
-      title: 'Develop website and add content',
-      completed: false,
-    },
-    {
-      // id: uuid.v4(),
-      id: uuidv4(),
-      title: 'Deploy to live server',
-      completed: false,
-    },
-  ],
-}
-
 const TodoContainer = () => {
-  const [state, setState] = useState(inicialState)
+  const [state, setState] = useState(() => {
+    const savedTodos = localStorage.getItem('todos')
+    if (savedTodos) return { todos: JSON.parse(savedTodos) }
+    return { todos: [] }
+  })
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(state.todos))
+  }, [state.todos])
 
   const handleChange = (id) => {
     setState({
