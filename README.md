@@ -13,12 +13,12 @@ If I have more time, I will add additional features such as assigning users, log
 - [x] Validation
 - [x] Multiple lists
 - [ ] Open and edit task
-- [ ] Cypress tests
+- [x] Cypress tests
 - [ ] Assigning users
 - [ ] Login/Sign up
 - [ ] Add comments
 - [ ] Drag and drop tasks
-- [ ] Styled
+- [x] Styled
 - [ ] PWA
 - [ ] i18n
 - [ ] Dark Mode
