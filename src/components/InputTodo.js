@@ -1,21 +1,20 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 
 const InputTodo = (props) => {
-  const [state, setState] = useState({
-    title: '',
-  })
-  const onChange = (e) => {
-    setState({
-      [e.target.name]: e.target.value,
-    })
+  const titleRef = useRef()
+
+  const verifyMandatoryFields = (title) => {
+    if (!title) {
+      alert('Title is mandatory')
+      return false
+    }
+    return true
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.addTodoProps(state.title)
-    setState({
-      title: '',
-    })
+    const title = titleRef.current.value
+    verifyMandatoryFields(title) && props.addTodoProps(title)
   }
 
   return (
@@ -24,9 +23,8 @@ const InputTodo = (props) => {
         type="text"
         className="input-text"
         placeholder="Add todo..."
-        value={state.title}
         name="title"
-        onChange={onChange}
+        ref={titleRef}
       />
       <input type="submit" className="input-submit" value="Submit" />
     </form>
