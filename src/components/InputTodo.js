@@ -1,10 +1,12 @@
 import React, { useRef } from 'react'
+import boards from '../constants/boards'
 
 const InputTodo = (props) => {
   const titleRef = useRef()
+  const boardRef = useRef()
 
-  const verifyMandatoryFields = (title) => {
-    if (!title) {
+  const verifyMandatoryFields = (task) => {
+    if (!task.title && !task.board) {
       alert('Title is mandatory')
       return false
     }
@@ -13,8 +15,11 @@ const InputTodo = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const title = titleRef.current.value
-    verifyMandatoryFields(title) && props.addTodoProps(title)
+    const task = {
+      title: titleRef.current.value,
+      board: boardRef.current.value,
+    }
+    verifyMandatoryFields(task) && props.addTodoProps(task)
   }
 
   return (
@@ -26,6 +31,13 @@ const InputTodo = (props) => {
         name="title"
         ref={titleRef}
       />
+      <select className="select-board" ref={boardRef}>
+        {boards.map((board) => (
+          <option key={board} value={board}>
+            {board}
+          </option>
+        ))}
+      </select>
       <input type="submit" className="input-submit" value="Submit" />
     </form>
   )

@@ -4,6 +4,7 @@ import Header from './Header'
 import InputTodo from './InputTodo'
 // import uuid from "uuid";
 import { v4 as uuidv4 } from 'uuid'
+import boards from '../constants/boards'
 
 const TodoContainer = () => {
   const [state, setState] = useState(() => {
@@ -37,11 +38,12 @@ const TodoContainer = () => {
     })
   }
 
-  const addTodoItem = (title) => {
+  const addTodoItem = (task) => {
     const newTodo = {
       // id: uuid.v4(),
       id: uuidv4(),
-      title: title,
+      title: task.title,
+      board: task.board,
       completed: false,
     }
     setState({
@@ -53,11 +55,23 @@ const TodoContainer = () => {
     <div className="container">
       <Header />
       <InputTodo addTodoProps={addTodoItem} />
-      <TodosList
-        todos={state.todos}
-        handleChangeProps={handleChange}
-        deleteTodoProps={delTodo}
-      />
+      {state.todos.length > 0 ? (
+        boards.map((board) => (
+          <div key={board}>
+            <h3>{board}</h3>
+            <TodosList
+              todos={state.todos.filter((todo) => todo.board === board)}
+              handleChangeProps={handleChange}
+              deleteTodoProps={delTodo}
+            />
+          </div>
+        ))
+      ) : (
+        <>
+          <h4>All boards are empty</h4>
+          <p>Add a new todo to get started</p>
+        </>
+      )}
     </div>
   )
 }
