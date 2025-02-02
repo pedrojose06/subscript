@@ -1,3 +1,20 @@
+:root {
+  --black: #00152e;
+  --white: white;
+  --gray: whitesmoke;
+  --green: #1eb76e;
+  --sea-green: #228e4c;
+  --royal-blue: #005ae1;
+  --orange: #fdb242;
+  --salmon: #ff5d5d;
+  --red-2: #e70000;
+  --white-30: #ffffff4d;
+  --dodger-blue: #0075ff;
+  --medium-purple: #9b82ff;
+  --black-2: #192c42;
+  --mobile-color: #f478ac;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
