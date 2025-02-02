@@ -10,8 +10,8 @@ If I have more time, I will add additional features such as assigning users, log
 
 ## Some features that I imagine should be implemented.
 
-- [ ] Validation
-- [ ] Multiple lists
+- [x] Validation
+- [x] Multiple lists
 - [ ] Open and edit task
 - [ ] Cypress tests
 - [ ] Assigning users

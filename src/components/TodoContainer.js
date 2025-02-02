@@ -55,23 +55,25 @@ const TodoContainer = () => {
     <div className="container">
       <Header />
       <InputTodo addTodoProps={addTodoItem} />
-      {state.todos.length > 0 ? (
-        boards.map((board) => (
-          <div key={board}>
-            <h3>{board}</h3>
-            <TodosList
-              todos={state.todos.filter((todo) => todo.board === board)}
-              handleChangeProps={handleChange}
-              deleteTodoProps={delTodo}
-            />
-          </div>
-        ))
-      ) : (
-        <>
-          <h4>All boards are empty</h4>
-          <p>Add a new todo to get started</p>
-        </>
-      )}
+      <div className="boards">
+        {state.todos.length > 0 ? (
+          boards.map((board) => (
+            <div key={board}>
+              <h3>{board}</h3>
+              <TodosList
+                todos={state.todos.filter((todo) => todo.board === board)}
+                handleChangeProps={handleChange}
+                deleteTodoProps={delTodo}
+              />
+            </div>
+          ))
+        ) : (
+          <>
+            <h4>All boards are empty</h4>
+            <p>Add a new todo to get started</p>
+          </>
+        )}
+      </div>
     </div>
   )
 }
